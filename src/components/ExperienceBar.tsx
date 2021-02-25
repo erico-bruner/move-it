@@ -1,22 +1,18 @@
 import { type } from 'os';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { ChallengesContext } from '../contexts/ChallengesContext';
 import styles from '../styles/components/ExperienceBar.module.css';
 
 export function ExperienceBar() {
-    const [ experience, setExperience ] = useState(0);
+
+    const { currentExperience, experienceToNextLevel } = useContext(ChallengesContext);
+
+    const percentForNextLevel = ( currentExperience * 100 ) / experienceToNextLevel; // Caso ocorra quebra no percentual da linha subistituir por ** const percentForNextLevel = Math.round( currentExperience * 100 ) / experienceToNextLevel; **
 
     function CreateCurrentExperience(value: number) {
-        if (value > 0 && value < 600) {
-            return <span className={styles.currentExperience} style={{ left: (experience*100)/600+"%"}}>{experience} xp</span>
+        if (value > 0 && value < experienceToNextLevel) {
+            return <span className={styles.currentExperience} style={{ left: percentForNextLevel+"%"}}>{currentExperience} xp</span>
         }
-    };
-
-    function addExperience() {
-        setExperience(experience +30);
-    };
-
-    function removeExperience() {
-        setExperience(experience -30);
     };
 
     return (
@@ -24,16 +20,11 @@ export function ExperienceBar() {
         <header className={styles.experienceBar}>
             <span>0 xp</span>
             <div className={styles.experienceBarEmpty}>
-                <div style={{ width: (experience*100)/600+"%" }} />
-                {CreateCurrentExperience(experience)}
+                <div style={{ width: percentForNextLevel+"%" }} />
+                {CreateCurrentExperience(currentExperience)}
             </div>
-            <span>600 xp</span>
-            <div className={styles.btns}>
-                <button className={styles.btn} type="button" onClick={removeExperience}>- 30</button>
-                <button className={styles.btn} type="button" onClick={addExperience}>+ 30</button>
-            </div>
+            <span>{experienceToNextLevel} xp</span>
         </header>   
-     
         </>
     );
 }

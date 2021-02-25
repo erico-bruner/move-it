@@ -27,30 +27,3 @@ span.currentExperience {
     top: 12px;
     transform: translateX(-50%);
 }
-
-.btn {
-    width: 2.5rem;
-    height: 1.5rem;
-    background: var(--blue);
-    color: var(--white);
-    border: none;
-    border-radius: 5px;
-    position: relative;
-    margin: 0 0 0 1rem;
-    font-size: 0.8rem;
-
-    transition: background-color 0.2s;
-}
-
-.btn:hover {
-    background: var(--blue-dark);
-}
-
-.btn:last-child {
-    margin-left: 4px;
-}
-
-.btns {
-    display: flex;
-    justify-content: center;
-}
