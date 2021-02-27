@@ -4,10 +4,13 @@ import { ChallengesProvider } from '../contexts/ChallengesContext'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ChallengesProvider>
         <Component {...pageProps} />
-    </ChallengesProvider>
   )
 }
 
 export default MyApp;
+
+// documentar (tech, como instalar, funcionalidades ...)
+// estilização (responsividade, PWA)
+// Cores (Tema Dark)
+// funcionalidades ()
